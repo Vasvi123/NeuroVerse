@@ -7,7 +7,6 @@ import "./App.css";
 const App = () => {
   return (
     <Router>
-      <div className="app-container">
         <nav>
           <Link to="/">Dyscalculia Support</Link>
           <Link to="/spd">SPD Support</Link>
@@ -17,7 +16,7 @@ const App = () => {
           <Route path="/" element={<Dyscalculia />} />
           <Route path="/spd" element={<SPDSettings />} />
         </Routes>
-      </div>
+     
     </Router>
   );
 };
