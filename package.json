@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "framer-motion": "^12.5.0",
+    "mermaid": "^11.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-flow": "^1.0.3",
     "recharts": "^2.15.1"
   },
   "devDependencies": {

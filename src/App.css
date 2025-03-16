@@ -1,7 +1,7 @@
 .dyscalculia-page {
   text-align: center;
   padding: 20px;
-  background: linear-gradient(135deg, #ffeb3b, #ff9800);
+  background: linear-gradient(135deg,  rgb(252, 215, 250), #f6aff2);
   min-height: 100vh;
   font-family: "Arial", sans-serif;
   display: flex;
@@ -20,11 +20,11 @@
 }
 
 .teaching-image {
-  width: 350px;
+  width: 500px;
   height: auto;
   position: absolute;
-  top: 175px;
-  left: 175px;
+  top: 100px;
+  left: 100px;
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.2));
 }
 
@@ -79,7 +79,7 @@ button {
   width: 100%;
   margin: 10px auto;
   padding: 16px;
-  background: #4CAF50;
+  background: rgb(225, 44, 225);
   color: white;
   border: none;
   border-radius: 5px;
@@ -88,7 +88,7 @@ button {
 }
 
 button:hover {
-  background: #388E3C;
+  background: #d730e6;
 }
 
 .result {
