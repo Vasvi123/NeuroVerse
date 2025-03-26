@@ -1,0 +1,226 @@
+* {
+  font-family: Arial, sans-serif !important;
+}
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #4a4a4a;
+}
+
+/* Headings */
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: black; /* Ensuring black color */
+  font-size: 26px; /* Increased font size */
+  font-weight: bold;
+}
+
+h3 {
+  color: black; /* Ensuring black color */
+  font-size: 22px; /* Slightly larger for better readability */
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px; /* Keeping this as perfect */
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 245, 247, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #f3a5ac;
+  border-radius: 5px;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #d4747b;
+  outline: none;
+}
+
+/* Discussion Forum */
+.forum {
+  max-width: 600px; /* Now same width as Contact Form */
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 225, 229, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.forum ul {
+  list-style: none;
+  padding: 0;
+}
+
+.forum li {
+  background: #fcd5d9;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.forum a {
+  color: #c94e56;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.forum a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  background: #ec7078;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 12px auto;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #b65b63;
+}
+
+/* Be Inspired Button - Remove Underline */
+a {
+  text-decoration: none;
+}
+
+a button {
+  text-decoration: none;
+}
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: #fac8c8;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a button {
+  text-decoration: none;
+}
+
+/* Inspirational Figures Section */
+.inspire-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  max-width: 800px;
+  margin: 10px auto 30px;
+}
+
+/* Card Layout */
+.inspire-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Individual Card */
+.person-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.person-card:hover {
+  transform: scale(1.05);
+}
+
+/* Profile Image */
+.person-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 4px solid #d1e0ff;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Person Name */
+.person-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #444;
+  margin-top: 10px;
+}
+
+/* Description */
+.person-desc {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .inspire-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .person-card {
+    width: 90%;
+  }
+
+  .person-img {
+    width: 100px;
+    height: 100px;
+  }
+}
