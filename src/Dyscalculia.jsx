@@ -5,6 +5,7 @@ import {
   LineChart, Line, PieChart, Pie, Cell
 } from "recharts";
 import "./Dyscalculia.css";  
+import { Link } from "react-router-dom";
 
 const Dyscalculia = () => {
   const [number, setNumber] = useState("");
@@ -84,20 +85,13 @@ const Dyscalculia = () => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28BFE"];
 
   return (
+     
     <div className="dyscalculia-page">
-      <motion.h1 className="title" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+      
+      <div className="main-content">
+      <motion.h1 className="title2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
         🧠 Dyscalculia Support Tools
       </motion.h1>
-
-      <motion.img
-        src="/teacher.png"
-        alt="Teacher explaining numbers"
-        className="teaching-image"
-        initial={{ x: -50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      />
-
       <motion.div whileHover={{ scale: 1.05 }}>
         <h2>📊 Number Interpretation</h2>
         <input className='step-inp' type="number" value={number} onChange={(e) => setNumber(e.target.value)} placeholder="Enter a number" />
@@ -148,10 +142,10 @@ const Dyscalculia = () => {
 
         <p className="chart-interpretation">{chartInterpretation}</p>
       </motion.div>
+      </div>
     </div>
   );
 };
-
 export default Dyscalculia;
 
 

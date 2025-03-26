@@ -5,7 +5,9 @@ import SPDSettings from "./SPDSettings";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Home from "./components/Home"; 
-
+import FlashcardApp from "./FlashcardApp";
+import ChatCompanion from "./components/ChatCompanion";
+import MoodTracker from "./components/MoodTracker";
 const App = () => {
   return (
     <Router>
@@ -17,6 +19,9 @@ const App = () => {
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/flashcardapp" element={<FlashcardApp/>} />
+      <Route path="/chatcompanion" element={<ChatCompanion/>} />
+      <Route path="/moodtracker" element={<MoodTracker/>} />
     </Routes>
      
     </Router>

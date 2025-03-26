@@ -1,5 +1,7 @@
 /* Center the form */
+
 body {
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +12,7 @@ body {
 }
 
 /* Neumorphic Container */
-.container {
+.login-container {
   background: #e0e5ec;
   padding: 50px;
   border-radius: 20px;
@@ -263,6 +265,23 @@ body {
   font-size: 24px;
   font-weight: bold;
   color: rgb(173, 171, 171);
+}
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #5a189a;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.chatbot-button:hover {
+  background-color: #7b2cbf;
 }
 
 

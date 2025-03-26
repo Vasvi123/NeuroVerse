@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./SPDSettings.css";
-
+import { Link } from "react-router-dom";
 const SPDSettings = () => {
   const [brightness, setBrightness] = useState(100);
   const [contrast, setContrast] = useState(100);
@@ -8,39 +8,46 @@ const SPDSettings = () => {
   const [theme, setTheme] = useState("default");
   const [soundMuted, setSoundMuted] = useState(false);
   const [gentleTransitions, setGentleTransitions] = useState(true);
-  const [hapticFeedback, setHapticFeedback] = useState(1);
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--brightness", `${brightness}%`);
-    document.documentElement.style.setProperty("--contrast", `${contrast}%`);
-    document.documentElement.style.setProperty("--font-sharpness", fontSharpness);
-
-    document.body.style.transition = gentleTransitions ? "all 0.5s ease-in-out" : "none";
+    const root = document.documentElement;
+    
+    // Apply brightness, contrast, and font sharpness globally
+    root.style.setProperty("--brightness", brightness /130);
+    root.style.setProperty("--contrast", contrast / 130);
+    root.style.setProperty("--font-sharpness", fontSharpness);
+    root.style.transition = gentleTransitions ? "all 0.5s ease-in-out" : "none";
   }, [brightness, contrast, fontSharpness, gentleTransitions]);
 
   useEffect(() => {
+    const root = document.documentElement;
+
+    // Apply Theme Globally to the Whole Page
     if (theme === "dark") {
-      document.body.style.backgroundColor = "#121212";
-      document.body.style.color = "#ffffff";
+      root.style.setProperty("--background-color", "#121212");  // Dark mode background
+      root.style.setProperty("--text-color", "#ffffff");  // Light text for contrast
+      root.style.setProperty("--container-background", "#1e1e1e"); // Dark mode container
     } else if (theme === "sepia") {
-      document.body.style.backgroundColor = "#f4e4c1";
-      document.body.style.color = "#5b4636";
+      root.style.setProperty("--background-color", "#f4e4c1");  // Sepia mode background
+      root.style.setProperty("--text-color", "#5b4636");  // Dark brown text for contrast
+      root.style.setProperty("--container-background", "#e8d5b7"); // Sepia mode container
     } else {
-      document.body.style.backgroundColor = "#ffffff";
-      document.body.style.color = "#333";
+      root.style.setProperty("--background-color", "#ffffff");  // Default white background
+      root.style.setProperty("--text-color", "#333333");  // Default dark text
+      root.style.setProperty("--container-background", "#fff"); // Default container background
     }
   }, [theme]);
 
+  // Mute all audio and video elements globally
   useEffect(() => {
-    if (soundMuted) {
-      document.querySelectorAll("video, audio").forEach((media) => {
-        media.muted = true;
-      });
-    }
+    document.querySelectorAll("video, audio").forEach((media) => {
+      media.muted = soundMuted;
+    });
   }, [soundMuted]);
 
   return (
     <div className="spd-container">
+     
       <h2>🔧 Sensory Processing Disorder (SPD) Support</h2>
 
       <label>Brightness</label>
@@ -64,11 +71,12 @@ const SPDSettings = () => {
 
       <label>Gentle Transitions</label>
       <input type="checkbox" checked={gentleTransitions} onChange={() => setGentleTransitions(!gentleTransitions)} />
-
-      <label>Haptic Feedback</label>
-      <input type="range" min="0" max="2" step="0.1" value={hapticFeedback} onChange={(e) => setHapticFeedback(e.target.value)} />
     </div>
   );
 };
 
 export default SPDSettings;
+
+
+
+
