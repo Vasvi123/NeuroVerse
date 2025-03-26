@@ -1,6 +1,136 @@
 .dyscalculia-page {
   text-align: center;
   padding: 20px;
+  background: linear-gradient(135deg,  rgb(252, 215, 250), #f6aff2);
+  min-height: 100vh;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  position: relative;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.teaching-image {
+  width: 500px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.2));
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.full-width-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.interactive-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 1200px;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+.interactive-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+input {
+  width:100%;
+  height: 20px; /* Increased height to stretch the input field */
+  padding: 16px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1.5rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin: 10px auto;
+  padding: 16px;
+  background: rgb(225, 44, 225);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  background: #d730e6;
+}
+
+.result {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #d32f2f;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #fff3e0;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+
+li:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .content-container {
+      flex-direction: column;
+      align-items: center;
+  }
+  .teaching-image {
+      position: static;
+      margin-bottom: 20px;
+  }
+}
+
+
+
+.dyscalculia-page {
+  text-align: center;
+  padding: 20px;
   background: linear-gradient(135deg, rgb(174, 222, 239), #91cbfb);
   min-height: 100vh;
   font-family: "Arial", sans-serif;
