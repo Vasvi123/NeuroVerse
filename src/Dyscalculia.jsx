@@ -100,8 +100,8 @@ const Dyscalculia = () => {
 
       <motion.div whileHover={{ scale: 1.05 }}>
         <h2>📊 Number Interpretation</h2>
-        <input type="number" value={number} onChange={(e) => setNumber(e.target.value)} placeholder="Enter a number" />
-        <button onClick={interpretNumber}>Interpret</button>
+        <input className='step-inp' type="number" value={number} onChange={(e) => setNumber(e.target.value)} placeholder="Enter a number" />
+        <button className='step-but' onClick={interpretNumber}>Interpret</button>
         
         {interpretation && (
           <motion.div className="interpretation-container" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -120,13 +120,13 @@ const Dyscalculia = () => {
 
       <motion.div whileHover={{ scale: 1.05 }}>
         <h2>🔗 Step-by-Step Math Breakdown (Flowchart)</h2>
-        <input type="text" value={mathInput} onChange={(e) => setMathInput(e.target.value)} placeholder="Enter a math expression" />
-        <button onClick={breakDownMath}>Generate Flowchart</button>
+        <input className='step-inp' type="text" value={mathInput} onChange={(e) => setMathInput(e.target.value)} placeholder="Enter a math expression" />
+        <button className='step-but' onClick={breakDownMath}>Generate Flowchart</button>
         <div className="flowchart-container">
           {mathSteps.map((step, index) => (
             <motion.div key={index} className="flowchart-step" initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: index * 0.3 }}>
               <span className="step-label">{step.step}</span>
-              <p>{step.description}</p>
+              <p className="step-p">{step.description}</p>
             </motion.div>
           ))}
         </div>
