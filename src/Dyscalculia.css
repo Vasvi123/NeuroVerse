@@ -163,6 +163,7 @@ li:hover {
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 1.3rem;
+  height:50px;
 }
 
 .step-but {
@@ -195,7 +196,6 @@ ul {
 }
 
 li {
-  background: #fff3e0;
   margin: 5px 0;
   padding: 10px;
   border-radius: 5px;
@@ -247,7 +247,7 @@ li:hover {
 }
 
 .divisible-by-5 {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg, #c8f000, #23e701) !important;
 }
 .flowchart-container {
   display: flex;
@@ -392,6 +392,7 @@ li:hover {
     padding: 15px;
   }
 }
+
 
 
 

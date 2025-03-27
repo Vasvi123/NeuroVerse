@@ -6,7 +6,6 @@ import {
 } from "recharts";
 import "./Dyscalculia.css";  
 import { Link } from "react-router-dom";
-
 const Dyscalculia = () => {
   const [number, setNumber] = useState("");
   const [interpretation, setInterpretation] = useState(null);

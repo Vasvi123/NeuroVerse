@@ -17,7 +17,6 @@ function FlashcardApp() {
   const [earnedBadge, setEarnedBadge] = useState("");
   const [quote, setQuote] = useState(""); // Holds the displayed motivational quote
   const { speak, voices } = useSpeechSynthesis();
-
   // Handle text upload
   const handleTextUpload = (event) => {
     const file = event.target.files[0];

@@ -9,9 +9,7 @@ body {
     background: linear-gradient(135deg, #d4a5ff, #8360c3);
     text-align: center;
     transition: background 0.5s ease-in-out;
-    padding-top: 20px;
   }
-  
   /* App Container */
   .app-container {
     width: 95%;
@@ -23,7 +21,9 @@ body {
     backdrop-filter: blur(10px);
     text-align: center;
   }
-  
+  .mood-tracker-container{
+    margin-top:100px;
+  }
   /* Heading */
   h1 {
     font-size: 30px;
@@ -64,16 +64,19 @@ body {
   /* Mood Tracker */
   .mood-tracker {
     margin-top: 20px;
-    padding: 15px;
+    padding: 75px;
     border-top: 3px solid #ddd;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
+    height:500px;
   }
   
   .mood-tracker h2 {
-    font-size: 22px;
-    color: #444;
+    font-size: 30px;
+    color: rgb(71, 9, 129);
     font-weight: 600;
+    margin-top:-55px;
+    font-family: cursive;
   }
   
   .track-button,

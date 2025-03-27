@@ -75,6 +75,7 @@ const MoodTracker = () => {
   return (
     <div className="mood-tracker-container" style={{ background: `linear-gradient(135deg, ${selectedColor}, #fad0c4)` }}>
       {/* ✅ EmotionWheel on top */}
+     
       <EmotionWheel
         onSelectEmotion={(emotion, color) => {
           setSelectedEmotion(emotion);
@@ -84,7 +85,7 @@ const MoodTracker = () => {
 
       {/* ✅ Mood Tracker below */}
       <div className="mood-tracker">
-        <h2>Mood Tracker</h2>
+        <h2>Alexithymia Support</h2>
         {selectedEmotion && <p>Current Mood: <strong>{selectedEmotion}</strong></p>}
         <button onClick={addMood} className="track-button">Save Mood</button>
         <button onClick={clearGraphData} className="clear-button">Clear Graph Data</button>
