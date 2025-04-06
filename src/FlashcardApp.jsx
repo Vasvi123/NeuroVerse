@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useSpeechSynthesis } from "react-speech-kit";
 import Confetti from "react-confetti";
+import { Link } from "react-router-dom";
 import "./FlashcardApp.css";
-import {Link} from 'react-router-dom'
+
 function FlashcardApp() {
-  // State variables
   const [text, setText] = useState("");
   const [flashcards, setFlashcards] = useState([]);
   const [index, setIndex] = useState(0);
@@ -15,9 +14,34 @@ function FlashcardApp() {
   const [sessionFullyCompleted, setSessionFullyCompleted] = useState(false);
   const [autoNext, setAutoNext] = useState(false);
   const [earnedBadge, setEarnedBadge] = useState("");
-  const [quote, setQuote] = useState(""); // Holds the displayed motivational quote
-  const { speak, voices } = useSpeechSynthesis();
-  // Handle text upload
+  const [quote, setQuote] = useState("");
+
+  // Native Web Speech API
+  const [voices, setVoices] = useState([]);
+  const [selectedVoice, setSelectedVoice] = useState(null);
+
+  useEffect(() => {
+    const loadVoices = () => {
+      const synthVoices = window.speechSynthesis.getVoices();
+      setVoices(synthVoices);
+      if (synthVoices.length > 0 && !selectedVoice) {
+        setSelectedVoice(synthVoices[0]);
+      }
+    };
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+      loadVoices();
+    }
+  }, [selectedVoice]);
+
+  const speak = (text) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+    window.speechSynthesis.speak(utterance);
+  };
+
   const handleTextUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -29,7 +53,6 @@ function FlashcardApp() {
     }
   };
 
-  // Generate meaningful flashcards by splitting text into paragraphs/chunks
   const generateFlashcards = () => {
     const paragraphs = text
       .split(/\n\s*\n/)
@@ -40,7 +63,6 @@ function FlashcardApp() {
 
     paragraphs.forEach((paragraph) => {
       if (paragraph.length > 300) {
-        // For long paragraphs, split into chunks at sentence boundaries
         const sentences = paragraph.split(/(?<=\.\s)/);
         let chunk = "";
         sentences.forEach((sentence) => {
@@ -63,7 +85,6 @@ function FlashcardApp() {
     setIndex(0);
   };
 
-  // Fetch a random motivational quote from quotes.json
   const fetchMotivationalQuote = async () => {
     try {
       const response = await fetch("/quotes.json");
@@ -76,17 +97,15 @@ function FlashcardApp() {
     }
   };
 
-  // Start session: enter fullscreen, reset timer, and clear previous session completion
   const startSession = () => {
     if (document.documentElement.requestFullscreen) {
       document.documentElement.requestFullscreen();
     }
     setSessionActive(true);
     setSessionElapsed(0);
-    setSessionFullyCompleted(false); // Reset confetti and badge for new session
+    setSessionFullyCompleted(false);
   };
 
-  // End session: check if the user completed the full session before awarding badge & confetti
   const endSession = () => {
     if (document.exitFullscreen) {
       document.exitFullscreen();
@@ -94,12 +113,11 @@ function FlashcardApp() {
     setSessionActive(false);
 
     if (sessionElapsed >= sessionDuration * 60) {
-      setSessionFullyCompleted(true); // Confetti appears only if session was fully completed
+      setSessionFullyCompleted(true);
       awardBadge();
     }
   };
 
-  // Award a badge only if the session was fully completed
   const awardBadge = () => {
     const badges = [
       "Focused Learner 🏅",
@@ -111,7 +129,6 @@ function FlashcardApp() {
     setEarnedBadge(randomBadge);
   };
 
-  // Manual flashcard navigation functions
   const goToNext = () => {
     setIndex((prev) => (prev + 1) % flashcards.length);
   };
@@ -120,7 +137,6 @@ function FlashcardApp() {
     setIndex((prev) => (prev - 1 + flashcards.length) % flashcards.length);
   };
 
-  // Update session timer while session is active
   useEffect(() => {
     let intervalId;
     if (sessionActive) {
@@ -141,10 +157,9 @@ function FlashcardApp() {
 
   return (
     <div className="container">
-      {sessionFullyCompleted && <Confetti />} {/* Confetti appears only if session is fully completed */}
+      {sessionFullyCompleted && <Confetti />}
 
       {!sessionActive ? (
-        // SETUP MODE: Upload text, set session duration, generate flashcards
         <div className="setup-container">
           <h1 className="title1">Neurodivergent Flashcards</h1>
           {sessionFullyCompleted && earnedBadge && (
@@ -193,7 +208,6 @@ function FlashcardApp() {
           )}
         </div>
       ) : (
-        // SESSION MODE: Flashcard display with navigation, speech synthesis, motivational quotes, and session controls
         <div className="session-container">
           <div className="session-header">
             <h2>
@@ -206,7 +220,9 @@ function FlashcardApp() {
           <div className="session-progress-bar-container">
             <div
               className="session-progress-bar"
-              style={{ width: `${(sessionElapsed / (sessionDuration * 60)) * 100}%` }}
+              style={{
+                width: `${(sessionElapsed / (sessionDuration * 60)) * 100}%`
+              }}
             ></div>
           </div>
           <div className="flashcard-container">
@@ -234,12 +250,29 @@ function FlashcardApp() {
               </button>
             </div>
             <div className="card-buttons">
-              <button className="btn speech-btn" onClick={() => speak({ text: flashcards[index], voice: voices[0] })}>
+              <button className="btn speech-btn" onClick={() => speak(flashcards[index])}>
                 🔊 Read Aloud
               </button>
               <button className="btn motivation-btn" onClick={fetchMotivationalQuote}>
                 You're doing great!
               </button>
+            </div>
+            <div className="voice-selector">
+              <label htmlFor="voiceSelect">Choose a voice:</label>
+              <select
+                id="voiceSelect"
+                value={selectedVoice ? selectedVoice.name : ""}
+                onChange={(e) => {
+                  const voice = voices.find((v) => v.name === e.target.value);
+                  setSelectedVoice(voice);
+                }}
+              >
+                {voices.map((voice, index) => (
+                  <option key={index} value={voice.name}>
+                    {voice.name} ({voice.lang})
+                  </option>
+                ))}
+              </select>
             </div>
             {quote && <p className="motivational-quote">{quote}</p>}
           </div>
