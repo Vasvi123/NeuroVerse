@@ -53,7 +53,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="login-container">
+    <main className="auth-page"><div className="login-container">
       <h2>Signup</h2>
       <form onSubmit={handleSignup}>
         <input
@@ -78,7 +78,7 @@ const Signup = () => {
       <p>
         Already have an account? <Link to="/"><span>Login here</span></Link>
       </p>
-    </div>
+    </div></main>
   );
 };
 

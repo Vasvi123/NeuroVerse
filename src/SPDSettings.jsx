@@ -1,82 +1,35 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./SPDSettings.css";
-import { Link } from "react-router-dom";
-const SPDSettings = () => {
-  const [brightness, setBrightness] = useState(100);
-  const [contrast, setContrast] = useState(100);
-  const [fontSharpness, setFontSharpness] = useState(1);
-  const [theme, setTheme] = useState("default");
+import { useTheme } from "./context/ThemeContext";
+
+const range = (name, label, min, max, step, settings, setSetting) => <div className="nv-settings-group">
+  <label>{label}</label>
+  <input type="range" min={min} max={max} step={step} value={settings[name]} onChange={(event) => setSetting(name, Number(event.target.value))} />
+</div>;
+
+export default function SPDSettings() {
+  const { settings, setSetting } = useTheme();
   const [soundMuted, setSoundMuted] = useState(false);
-  const [gentleTransitions, setGentleTransitions] = useState(true);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    
-    // Apply brightness, contrast, and font sharpness globally
-    root.style.setProperty("--brightness", brightness /130);
-    root.style.setProperty("--contrast", contrast / 130);
-    root.style.setProperty("--font-sharpness", fontSharpness);
-    root.style.transition = gentleTransitions ? "all 0.5s ease-in-out" : "none";
-  }, [brightness, contrast, fontSharpness, gentleTransitions]);
-
-  useEffect(() => {
-    const root = document.documentElement;
-
-    // Apply Theme Globally to the Whole Page
-    if (theme === "dark") {
-      root.style.setProperty("--background-color", "#121212");  // Dark mode background
-      root.style.setProperty("--text-color", "#ffffff");  // Light text for contrast
-      root.style.setProperty("--container-background", "#1e1e1e"); // Dark mode container
-    } else if (theme === "sepia") {
-      root.style.setProperty("--background-color", "#f4e4c1");  // Sepia mode background
-      root.style.setProperty("--text-color", "#5b4636");  // Dark brown text for contrast
-      root.style.setProperty("--container-background", "#e8d5b7"); // Sepia mode container
-    } else {
-      root.style.setProperty("--background-color", "#ffffff");  // Default white background
-      root.style.setProperty("--text-color", "#333333");  // Default dark text
-      root.style.setProperty("--container-background", "#fff"); // Default container background
-    }
-  }, [theme]);
-
-  // Mute all audio and video elements globally
   useEffect(() => {
     document.querySelectorAll("video, audio").forEach((media) => {
       media.muted = soundMuted;
     });
   }, [soundMuted]);
 
-  return (
-    <div className="spd-container">
-     
-      <h2>🔧 Sensory Processing Disorder (SPD) Support</h2>
+  return <div className="spd-container nv-settings-page">
+    <div className="nv-settings-intro"><h2>🔧 Sensory Processing Disorder (SPD) Support</h2><p>Adjust the workspace to reduce sensory strain and support focus.</p></div>
 
-      <label>Brightness</label>
-      <input type="range" min="50" max="150" value={brightness} onChange={(e) => setBrightness(e.target.value)} />
-
-      <label>Contrast</label>
-      <input type="range" min="50" max="150" value={contrast} onChange={(e) => setContrast(e.target.value)} />
-
-      <label>Font Sharpness</label>
-      <input type="range" min="0.5" max="2" step="0.1" value={fontSharpness} onChange={(e) => setFontSharpness(e.target.value)} />
-
-      <label>Theme</label>
-      <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-        <option value="default">Default</option>
-        <option value="dark">Dark Mode</option>
-        <option value="sepia">Sepia</option>
-      </select>
-
-      <label>Sound Muting</label>
-      <input type="checkbox" checked={soundMuted} onChange={() => setSoundMuted(!soundMuted)} />
-
-      <label>Gentle Transitions</label>
-      <input type="checkbox" checked={gentleTransitions} onChange={() => setGentleTransitions(!gentleTransitions)} />
-    </div>
-  );
-};
-
-export default SPDSettings;
-
-
-
-
+    {range("brightness", "Brightness", 50, 150, 1, settings, setSetting)}
+    {range("contrast", "Contrast", 50, 150, 1, settings, setSetting)}
+    {range("fontSize", "Font Size", 85, 130, 1, settings, setSetting)}
+    <div className="nv-settings-group"><label>Font Weight</label><select value={settings.fontWeight} onChange={(event) => setSetting("fontWeight", Number(event.target.value))}><option value="400">Regular</option><option value="500">Medium</option><option value="600">Semibold</option><option value="700">Bold</option></select></div>
+    {range("fontSharpness", "Font Sharpness / Readability", 0.5, 2, 0.1, settings, setSetting)}
+    {range("letterSpacing", "Letter Spacing", -0.02, 0.12, 0.01, settings, setSetting)}
+    {range("lineHeight", "Line Height", 1.2, 2, 0.1, settings, setSetting)}
+    <div className="nv-settings-group"><label>Color Theme</label><select value={settings.colorTheme} onChange={(event) => setSetting("colorTheme", event.target.value)}><option value="light">Light</option><option value="dark">Dark</option><option value="high-contrast">High Contrast</option></select></div>
+    {range("saturation", "Saturation", 50, 150, 1, settings, setSetting)}
+    <label className="nv-settings-toggle">Sound Muting<input type="checkbox" checked={soundMuted} onChange={() => setSoundMuted(!soundMuted)} /></label>
+    <label className="nv-settings-toggle">Reduced Motion<input type="checkbox" checked={settings.reducedMotion} onChange={() => setSetting("reducedMotion", !settings.reducedMotion)} /></label>
+  </div>;
+}

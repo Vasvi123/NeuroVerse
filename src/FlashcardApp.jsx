@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+// JSX namespace usage is not detected by this ESLint configuration.
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import Confetti from "react-confetti";
 import { Link } from "react-router-dom";
@@ -12,7 +14,6 @@ function FlashcardApp() {
   const [sessionActive, setSessionActive] = useState(false);
   const [sessionElapsed, setSessionElapsed] = useState(0); // elapsed seconds
   const [sessionFullyCompleted, setSessionFullyCompleted] = useState(false);
-  const [autoNext, setAutoNext] = useState(false);
   const [earnedBadge, setEarnedBadge] = useState("");
   const [quote, setQuote] = useState("");
 
@@ -156,11 +157,11 @@ function FlashcardApp() {
   }, [sessionActive, sessionDuration]);
 
   return (
-    <div className="container">
+    <div className="nv-flashcards-page">
       {sessionFullyCompleted && <Confetti />}
 
       {!sessionActive ? (
-        <div className="setup-container">
+        <div className="setup-container nv-flashcards-setup">
           <h1 className="title1">Neurodivergent Flashcards</h1>
           {sessionFullyCompleted && earnedBadge && (
             <p className="badge">🏅 You earned: {earnedBadge}</p>
@@ -208,7 +209,7 @@ function FlashcardApp() {
           )}
         </div>
       ) : (
-        <div className="session-container">
+        <div className="session-container nv-flashcards-session">
           <div className="session-header">
             <h2>
               Flashcard Session ({sessionDuration} min)

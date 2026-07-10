@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+// JSX namespace usage is not detected by this ESLint configuration.
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
@@ -17,6 +19,8 @@ const Dyscalculia = () => {
 
   useEffect(() => {
     generateChartData();
+  // Chart values are deliberately generated only when this learning tool opens.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const generateChartData = () => {
@@ -85,13 +89,13 @@ const Dyscalculia = () => {
 
   return (
      
-    <div className="dyscalculia-page">
+    <div className="dyscalculia-page nv-visual-math-page">
       
-      <div className="main-content">
+      <div className="main-content nv-visual-math-content">
       <motion.h1 className="title2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
         🧠 Dyscalculia Support Tools
       </motion.h1>
-      <motion.div whileHover={{ scale: 1.05 }}>
+      <motion.div className="visual-math-card" whileHover={{ scale: 1.05 }}>
         <h2>📊 Number Interpretation</h2>
         <input className='step-inp' type="number" value={number} onChange={(e) => setNumber(e.target.value)} placeholder="Enter a number" />
         <button className='step-but' onClick={interpretNumber}>Interpret</button>
@@ -111,7 +115,7 @@ const Dyscalculia = () => {
         )}
       </motion.div>
 
-      <motion.div whileHover={{ scale: 1.05 }}>
+      <motion.div className="visual-math-card" whileHover={{ scale: 1.05 }}>
         <h2>🔗 Step-by-Step Math Breakdown (Flowchart)</h2>
         <input className='step-inp' type="text" value={mathInput} onChange={(e) => setMathInput(e.target.value)} placeholder="Enter a math expression" />
         <button className='step-but' onClick={breakDownMath}>Generate Flowchart</button>
@@ -125,7 +129,7 @@ const Dyscalculia = () => {
         </div>
       </motion.div>
 
-      <motion.div whileHover={{ scale: 1.05 }}>
+      <motion.div className="visual-math-card" whileHover={{ scale: 1.05 }}>
         <h2>📈 Graphical Interpretation</h2>
         <select className="chart-selector" value={chartType} onChange={(e) => setChartType(e.target.value)}>
           <option value="Bar">Bar Chart</option>

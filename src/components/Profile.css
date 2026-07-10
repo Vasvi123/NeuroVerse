@@ -1,0 +1,2 @@
+.nv-profile-page { width: 100%; min-height: calc(100vh - 158px); align-content: start; }.nv-profile-card, .nv-profile-page > .nv-info-card { width: 100%; }.nv-profile-card { min-height: 220px; }.nv-profile-page > .nv-info-card { min-height: 170px; }
+@media (max-width: 700px) { .nv-profile-page { min-height: calc(100vh - 130px); } }

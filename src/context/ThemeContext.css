@@ -1,0 +1,5 @@
+.nv-theme-scope { min-height: 100vh; font-size: var(--nv-a11y-font-size); font-weight: var(--nv-a11y-font-weight); letter-spacing: var(--nv-a11y-letter-spacing); line-height: var(--nv-a11y-line-height); text-rendering: var(--nv-a11y-text-rendering); }
+.nv-theme-scope .nv-shell { filter: brightness(var(--nv-a11y-brightness)) contrast(var(--nv-a11y-contrast)) saturate(var(--nv-a11y-saturation)); }
+.nv-theme-scope[data-color-theme="dark"] { --nv-bg: #181817; --nv-surface: #242422; --nv-text: #f5f5f0; --nv-muted: #b0b0a9; --nv-border: #3a3a36; --nv-accent: #a9a4ff; --nv-accent-soft: #343153; --nv-shadow: 0 12px 35px rgba(0, 0, 0, .2); }
+.nv-theme-scope[data-color-theme="high-contrast"] { --nv-bg: #000; --nv-surface: #000; --nv-text: #fff; --nv-muted: #fff; --nv-border: #fff; --nv-accent: #ffeb00; --nv-accent-soft: #252500; --nv-shadow: none; }
+.nv-theme-scope[data-reduced-motion="true"] *, .nv-theme-scope[data-reduced-motion="true"] *::before, .nv-theme-scope[data-reduced-motion="true"] *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
